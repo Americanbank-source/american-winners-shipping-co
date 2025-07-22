@@ -23,10 +23,14 @@ function trackItem() {
   });
   html += '</tbody></table></div>';
 
+  // Display note in red bold if exists
+  if (data.note) {
+    html += '<div style="margin-top:20px;color:darkred;font-weight:bold;">' + data.note.replace(/\n/g, "<br>") + '</div>';
+  }
+
   html += '<p><strong>Sender:</strong> ' + data.sender.name + ' (' + data.sender.email + '), ' + data.sender.location + '</p>';
   html += '<p><strong>Receiver:</strong> ' + data.receiver.name + ', ' + data.receiver.address + '</p>';
 
-  // Optional proof/package image placeholder
   if (data.proof) {
     html += '<div class="proof"><h3>Proof / Package Image:</h3>';
     html += '<img src="' + data.proof + '" alt="Package Proof" style="max-width:100%;margin-top:10px;">';
