@@ -15,14 +15,23 @@ function trackItem() {
   html += '<p><strong>Current Location:</strong> ' + data.current_location + '</p>';
   html += '<p><strong>Expected Delivery:</strong> ' + data.expected_delivery + '</p>';
 
+  // Tracking history as a table
   html += '<div class="history"><h3>Tracking History:</h3>';
+  html += '<table border="1" cellspacing="0" cellpadding="6"><thead><tr><th>Date</th><th>Time</th><th>Status</th></tr></thead><tbody>';
   data.history.forEach(event => {
-    html += '<div><strong>' + event.date + ' ' + event.time + '</strong>: ' + event.status + '</div>';
+    html += '<tr><td>' + event.date + '</td><td>' + event.time + '</td><td>' + event.status + '</td></tr>';
   });
-  html += '</div>';
+  html += '</tbody></table></div>';
 
   html += '<p><strong>Sender:</strong> ' + data.sender.name + ' (' + data.sender.email + '), ' + data.sender.location + '</p>';
   html += '<p><strong>Receiver:</strong> ' + data.receiver.name + ', ' + data.receiver.address + '</p>';
+
+  // Optional proof/package image placeholder
+  if (data.proof) {
+    html += '<div class="proof"><h3>Proof / Package Image:</h3>';
+    html += '<img src="' + data.proof + '" alt="Package Proof" style="max-width:100%;margin-top:10px;">';
+    html += '</div>';
+  }
 
   resultDiv.innerHTML = html;
 }
